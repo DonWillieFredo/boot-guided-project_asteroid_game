@@ -2,16 +2,26 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+pygame.init()
 '''each .py file is a module, and we can import functions, variables, and classes from one module into another with the import statement. The name of a module is the filename (without the .py extension).'''
-import constants
+from constants import *
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 # write fucntion that prints "Starting astroids"
-# add if stament to end of file
 def main():
     print("Starting asteroids!")
     print("Screen width: 1280")
     print("Screen height: 720")
 
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
 
+        screen.fill((0, 0, 0))
+        pygame.display.flip()
+
+        
+# add if statement
 if __name__ == "__main__":
     main()
 '''
