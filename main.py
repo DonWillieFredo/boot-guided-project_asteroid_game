@@ -11,16 +11,24 @@ def main():
     print("Starting asteroids!")
     print("Screen width: 1280")
     print("Screen height: 720")
-
+    # Clock object to control fps
+    clock = pygame.time.Clock()
+    dt = 0 # delta time zero
+    # ifinite game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
-        screen.fill((0, 0, 0))
-        pygame.display.flip()
+        screen.fill((0, 0, 0)) # fill screen black
+        # Instantiate the Player object
+        x = SCREEN_WIDTH / 2
+        y = SCREEN_HEIGHT / 2
+        #player = player(x, y)
+        pygame.display.flip() # refresh display
 
-        
+        # control FPS / convert milliseconds to seconds
+        dt = clock.tick(60) / 1000.0
 # add if statement
 if __name__ == "__main__":
     main()
