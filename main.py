@@ -1,39 +1,48 @@
-# this allows us to use code from
-# the open-source pygame library
-# throughout this file
 import pygame
-pygame.init()
-'''each .py file is a module, and we can import functions, variables, and classes from one module into another with the import statement. The name of a module is the filename (without the .py extension).'''
+from player import Player  # Import the Player class
 from constants import *
+pygame.init()
+
+# Constants
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
+
+# Set up the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-# write fucntion that prints "Starting astroids"
+
 def main():
     print("Starting asteroids!")
-    print("Screen width: 1280")
-    print("Screen height: 720")
+    print(f"Screen width: {SCREEN_WIDTH}")
+    print(f"Screen height: {SCREEN_HEIGHT}")
+
+    # Instantiate the Player object
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    player = Player(x, y)
+
     # Clock object to control fps
     clock = pygame.time.Clock()
-    dt = 0 # delta time zero
-    # ifinite game loop
+    dt = 0  # Delta time
+
+    # Infinite game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
-        screen.fill((0, 0, 0)) # fill screen black
-        # Instantiate the Player object
-        x = SCREEN_WIDTH / 2
-        y = SCREEN_HEIGHT / 2
-        #player = player(x, y)
-        pygame.display.flip() # refresh display
+        # Clear the screen
+        screen.fill((0, 0, 0))  # Fill screen black
 
-        # control FPS / convert milliseconds to seconds
+        # Draw the player
+        player.draw(screen)
+
+        # Refresh the display
+        pygame.display.flip()
+
+        # Control FPS / convert milliseconds to seconds
         dt = clock.tick(60) / 1000.0
-# add if statement
+
+# Add if statement
 if __name__ == "__main__":
     main()
-'''
-This line ensures the main() function is only called when this file is run directly; it won't run if it's imported as a module. It's considered the "pythonic" way to structure an executable program in Python. Technically, the program will work fine by just calling main(), but you might get an angry letter from Guido van Rossum if you don't.
-'''
-
 
